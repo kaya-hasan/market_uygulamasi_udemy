@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:market_uygulamasi/sepetim.dart';
+import 'package:market_uygulamasi/urunler.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,14 +26,14 @@ class AnaSayfa extends StatefulWidget {
 }
 
 class _AnaSayfaState extends State<AnaSayfa> {
-  int _aktifIcerikNo = 0;
+  int _aktifIcerikNo = 1;
   late List<Widget> _icerikler;
   @override
   void initState() {
     super.initState();
     _icerikler = [
-      Text("İçerik1"),
-      Text("İçerik2"),
+      Urunler(),
+      Sepetim(),
     ];
   }
 
@@ -54,13 +56,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
       ),
       body: _icerikler[_aktifIcerikNo],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _aktifIcerikNo,
+        selectedItemColor: Colors.blue[400],
+        unselectedItemColor: Colors.grey[600],
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "İçerik1"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Ürünler"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: "İçerik2"),
+              icon: Icon(Icons.shopping_cart), label: "Sepetim"),
         ],
         onTap: (int tiklananButonPozisyonNo) {
-          print(tiklananButonPozisyonNo);
+          setState(() {
+            _aktifIcerikNo = tiklananButonPozisyonNo;
+          });
         },
       ),
     );
