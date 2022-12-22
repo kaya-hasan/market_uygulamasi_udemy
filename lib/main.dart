@@ -39,9 +39,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(
+        NetworkImage(
+            "https://cdn.dsmcdn.com/ty117/product/media/images/20210525/13/91537299/178005658/2/2_org_zoom.jpg"),
+        context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.orange[700]),
         elevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
@@ -55,6 +60,37 @@ class _AnaSayfaState extends State<AnaSayfa> {
         ),
       ),
       body: _icerikler[_aktifIcerikNo],
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.all(0.0),
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("Hasan Kaya"),
+              accountEmail: Text("h3kaya5@gmail.com"),
+              currentAccountPicture: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://avatars.githubusercontent.com/u/58564918?v=4"),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+              ),
+              decoration: BoxDecoration(color: Colors.orange[700]),
+            ),
+            ListTile(title: Text("Siparişlerim"), onTap: () {},),
+            ListTile(title: Text("İndirim Kuponlarım"), onTap: () {},),
+            ListTile(title: Text("Hırdavat Asistant"), onTap: () {},),
+            ListTile(title: Text("Hırdavat Cüzdanım"), onTap: () {},),
+            ListTile(title: Text("Ayarlar"), onTap: () {},),
+            ListTile(title: Text("Çıkış Yap"), onTap: () {
+              Navigator.pop(context);
+            },),
+
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _aktifIcerikNo,
         selectedItemColor: Colors.blue[400],
